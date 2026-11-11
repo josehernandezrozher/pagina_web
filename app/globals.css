@@ -1,0 +1,178 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter/wght.css";
+
+/*
+  ROZHER SEGUROS — Design tokens
+  Estilo inspirado en banca institucional (Grupo Financiero Inbursa como
+  referencia de dirección visual): azul marino profundo, acento azul brillante,
+  tipografía Inter, fondo gris muy claro, tarjetas blancas de esquinas amplias y
+  botones en forma de píldora. Marca y contenido son de Rozher; ningún activo
+  oficial de terceros (logos, imágenes, textos) se usa. Todo valor de marca está
+  centralizado aquí para reemplazarse sin tocar componentes.
+
+  Las proporciones se midieron sobre capturas de referencia a 1536 px de ancho
+  (pantalla de 1920 px al 125 %). La tipografía y los espacios son FLUIDOS
+  (vw con mínimo y máximo), por eso a 1536 px reproducen esas medidas y en
+  otras pantallas escalan de forma proporcional.
+*/
+@theme {
+  --color-primary: #000254;
+  --color-primary-dark: #00013a;
+  --color-primary-soft: #e8e9f6;
+
+  --color-accent: #0d6efd;
+  --color-accent-dark: #0a58ca;
+
+  --color-ink: #000254;
+  --color-ink-soft: #46487a;
+  --color-paper: #f5f5f7;
+  --color-white: #ffffff;
+  --color-border: #e6e5e5;
+  --color-panel: #e6e5e5;
+  --color-hero-light: #e7ebf6; /* tono del banner claro de inicio (para que el móvil continúe el color) */
+
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #1da851;
+
+  --color-pending: #b5451b;
+  --color-pending-bg: #fbeae3;
+
+  --font-display: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 1.75rem;
+
+  --shadow-card: 0 2px 14px rgba(0, 2, 84, 0.07);
+  --shadow-card-hover: 0 12px 32px -12px rgba(0, 2, 84, 0.28);
+
+  /* Escala tipográfica fluida (valor medio = 1536 px de ancho) */
+  --text-display: clamp(2rem, 3vw, 4rem);          /* 46 px: título principal */
+  --text-display--line-height: 1.25;
+  --text-section: clamp(1.875rem, 3.5vw, 4rem);    /* 54 px: títulos de sección */
+  --text-section--line-height: 1.2;
+  --text-lead: clamp(1.125rem, 1.8vw, 2rem);       /* 27 px: subtítulo del hero */
+  --text-lead--line-height: 1.3;
+  --text-card-title: clamp(1.375rem, 1.7vw, 2rem); /* 26 px: título de tarjeta */
+  --text-card-title--line-height: 1.2;
+  --text-card: clamp(1.0625rem, 1.4vw, 1.5rem);    /* 21 px: texto de tarjeta */
+  --text-card--line-height: 1.3;
+  --text-nav: clamp(1rem, 1.4vw, 1.5rem);          /* 21 px: navegación y botones */
+  --text-nav--line-height: 1.2;
+}
+
+:root {
+  /* Espacios fluidos (valor medio = 1536 px de ancho) */
+  --gutter: clamp(1.25rem, 3.6vw, 4.5rem);        /* margen lateral: 55 px */
+  --nav-h: clamp(4rem, 6.25vw, 7rem);             /* alto de la barra de navegación: 96 px */
+  --topbar-h: clamp(2.75rem, 3.4vw, 4rem);        /* alto de la barra superior: 52 px */
+  --section-y: clamp(3rem, 4.5vw, 6rem);          /* espacio vertical de sección: 69 px */
+  --card-gap: clamp(1.25rem, 2.35vw, 2.75rem);    /* separación entre tarjetas: 36 px */
+}
+
+/*
+  Estilos base en @layer base: así las utilidades de Tailwind (text-white,
+  text-primary, etc.) siempre ganan a estas reglas de elemento. Escribirlas
+  sin capa rompería los colores de enlaces y botones.
+*/
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem; /* 17 px: legibilidad para público objetivo (pensionados) */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/*
+  Componentes reutilizables. Van en @layer components para que cualquier
+  utilidad de Tailwind (p. ej. max-w-3xl) pueda sobrescribirlos.
+*/
+@layer components {
+  .site-container {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 110rem;
+    padding-inline: var(--gutter);
+  }
+
+  /* Botón en forma de píldora (64 px de alto a 1536 px) */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: clamp(3rem, 4.17vw, 5rem);
+    padding-inline: clamp(1.5rem, 3.1vw, 3.5rem);
+    border-radius: 9999px;
+    font-size: var(--text-nav);
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+  /* Variante pequeña (barra de navegación): 48 px de alto a 1536 px */
+  .btn-sm {
+    min-height: clamp(2.5rem, 3.1vw, 3.75rem);
+    padding-inline: clamp(1.25rem, 2.2vw, 2.5rem);
+    font-size: clamp(1rem, 1.3vw, 1.375rem);
+  }
+  .btn-primary {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-dark);
+  }
+  .btn-outline {
+    border: 2px solid var(--color-border);
+    color: var(--color-ink);
+  }
+  .btn-outline:hover {
+    background: var(--color-paper);
+  }
+
+  /* Entrada suave de cada slide del carrusel */
+  .hero-panel {
+    animation: hero-in 0.6s ease both;
+  }
+
+  /* Título de sección centrado (54 px a 1536 px) */
+  .section-title {
+    font-size: var(--text-section);
+    line-height: 1.2;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-ink);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@keyframes hero-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
