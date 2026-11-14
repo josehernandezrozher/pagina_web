@@ -12,7 +12,7 @@ import { PENDING_INFO } from "@/lib/products/pending";
  */
 export const LEGAL = {
   /** Nombre comercial */
-  brand: "Rozher Seguros",
+  brand: "Rozher Servicios Financieros",
   /** Razón social completa, tal como aparece en el acta constitutiva / RFC */
   legalName: PENDING_INFO,
   /** Domicilio completo del responsable (calle, número, colonia, C.P., ciudad, estado) */
