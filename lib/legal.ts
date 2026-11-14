@@ -20,7 +20,7 @@ export const LEGAL = {
   /** Correo para ejercer derechos ARCO y asuntos de privacidad */
   privacyEmail: "jose.hernandez@rozherseguros.com",
   /** Registros, autorizaciones o inscripciones regulatorias que apliquen (si aplican) */
-  regulatoryRegistrations: "",
+  regulatoryRegistrations: "Agente de seguros y de fianzas persona moral autorizado por la Comisión Nacional de Seguros y Fianzas (CNSF).",
   /** Unidad o canal de atención de quejas y aclaraciones de usuarios */
   complaintsUnit: "jose.hernandez@rozherseguros.com",
   /** Ciudad cuyos tribunales serán competentes (para los términos y condiciones) */
