@@ -20,6 +20,12 @@ type Slide = {
    * dark  = foto con overlay azul y texto blanco a la izquierda.
    */
   tone: Tone;
+  /**
+   * Solo para tone "light": de qué lado va el texto.
+   * "right" (por defecto) = persona a la izquierda y texto a la derecha.
+   * "left"  = persona a la derecha y texto a la izquierda.
+   */
+  textSide?: "left" | "right";
   /** El slide solo aparece si este producto está disponible */
   slug?: string;
   /** El slide solo aparece si hay al menos un producto disponible de esta categoría */
@@ -32,12 +38,12 @@ type Slide = {
  * Auto-avanza, se pausa al pasar el cursor y respeta prefers-reduced-motion.
  * Con un solo slide no muestra flechas ni pestañas.
  *
- * El banner claro conserva la proporción de su imagen (1600×773) para no recortar a la
- * persona; el texto ocupa el espacio vacío de la derecha. Cada slide avisa a la barra de
- * navegación de su tono (evento "hero-tone") para que sus letras sean legibles.
+ * El banner claro conserva la proporción de su imagen (2005×784) para no recortar a la
+ * persona; el texto ocupa el espacio vacío del lado que indique textSide. Cada slide avisa
+ * a la barra de navegación de su tono (evento "hero-tone") para que sus letras sean legibles.
  *
- * Para un slide nuevo con banner claro: imagen con el sujeto en el tercio izquierdo y el
- * resto libre, y tone: "light".
+ * Para un slide nuevo con banner claro: imagen de 2005×784 con el sujeto a un lado y el
+ * resto libre, tone: "light" y textSide del lado libre.
  */
 const ALL_SLIDES: Slide[] = [
   {
@@ -46,8 +52,9 @@ const ALL_SLIDES: Slide[] = [
     text: "Crédito personal con cobranza delegada para pensionados y trabajadores IMSS. Te asesoramos en todo el trámite.",
     ctaLabel: "Conocer el crédito",
     ctaHref: "/productos/credito-nomina-imss",
-    image: "/images/hero/banner-imss.jpg",
+    image: "/images/hero/banner-imss-asesora.jpg",
     tone: "light",
+    textSide: "left",
     slug: "credito-nomina-imss",
   },
   {
@@ -122,7 +129,7 @@ export function HeroSlider({
 
   return (
     <section
-      className="relative isolate -mt-[var(--nav-h)] overflow-hidden bg-[var(--color-hero-light)] md:aspect-[1600/773] md:max-h-[60rem]"
+      className="relative isolate -mt-[var(--nav-h)] overflow-hidden bg-[var(--color-hero-light)] md:h-[calc(100vw*784/2005+var(--nav-h))] md:max-h-[60rem]"
       aria-roledescription="carousel"
       aria-label="Productos destacados"
       onMouseEnter={() => setPaused(true)}
@@ -191,22 +198,30 @@ export function HeroSlider({
   );
 }
 
-/** Banner claro: la imagen manda; el texto va en el espacio libre de la derecha (en móvil, debajo de la imagen). */
+/** Banner claro: la imagen manda; el texto va en el espacio libre (en móvil, debajo de la imagen). */
 function LightSlide({ slide }: { slide: Slide }) {
+  const textLeft = slide.textSide === "left";
   return (
     <>
-      <div className="relative h-[78vw] max-h-[28rem] md:absolute md:inset-0 md:h-auto md:max-h-none">
+      {/* La imagen empieza debajo de la barra de navegación para que no la tape. */}
+      <div className="relative mt-[var(--nav-h)] h-[78vw] max-h-[28rem] md:absolute md:mt-0 md:inset-x-0 md:top-[var(--nav-h)] md:bottom-0 md:h-auto md:max-h-none">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={slide.image}
           alt=""
-          className="h-full w-full object-cover object-[10%_15%] md:object-[center_top]"
+          className={`h-full w-full object-cover md:object-[center_top] ${
+            textLeft ? "object-[78%_15%]" : "object-[10%_15%]"
+          }`}
         />
       </div>
 
-      <div className="relative bg-[var(--color-hero-light)] pt-8 pb-12 md:flex md:flex-1 md:items-center md:bg-transparent md:pt-[var(--nav-h)] md:pb-[7vw]">
+      <div className="relative bg-[var(--color-hero-light)] pt-8 pb-12 md:flex md:flex-1 md:items-center md:bg-transparent md:pt-[var(--nav-h)] md:pb-[3vw]">
         <Container className="w-full">
-          <div className="text-[var(--color-primary)] md:ml-[36.4vw] md:max-w-[50vw]">
+          <div
+            className={`text-[var(--color-primary)] ${
+              textLeft ? "md:ml-[4vw] md:max-w-[38vw]" : "md:ml-[36.4vw] md:max-w-[50vw]"
+            }`}
+          >
             <h1 className="text-display font-bold">{slide.title}</h1>
             <p className="mt-[clamp(1rem,2.3vw,2.5rem)] text-lead font-semibold">{slide.text}</p>
             <div className="mt-[clamp(1.5rem,2.7vw,3rem)]">
