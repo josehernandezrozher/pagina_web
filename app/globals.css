@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter/wght.css";
 
+/* Tipografía principal: Plus Jakarta Sans (variable, pesos 200–800), alojada en /public/fonts. */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("/fonts/plus-jakarta-sans.woff2") format("woff2-variations"),
+       url("/fonts/plus-jakarta-sans.woff2") format("woff2");
+}
+
 /*
   ROZHER SEGUROS — Design tokens
   Estilo inspirado en banca institucional (Grupo Financiero Inbursa como
@@ -29,7 +39,7 @@
   --color-white: #ffffff;
   --color-border: #e6e5e5;
   --color-panel: #e6e5e5;
-  --color-hero-light: #e7ebf6; /* tono del banner claro de inicio (para que el móvil continúe el color) */
+  --color-hero-light: #dfeafd; /* tono del banner claro de inicio (para que el móvil continúe el color) */
 
   --color-whatsapp: #25d366;
   --color-whatsapp-dark: #1da851;
@@ -37,8 +47,8 @@
   --color-pending: #b5451b;
   --color-pending-bg: #fbeae3;
 
-  --font-display: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: 0.5rem;
   --radius-md: 1rem;
@@ -51,6 +61,10 @@
   /* Escala tipográfica fluida (valor medio = 1536 px de ancho) */
   --text-display: clamp(2rem, 3vw, 4rem);          /* 46 px: título principal */
   --text-display--line-height: 1.25;
+  --text-hero: clamp(2.25rem, 3.9vw, 5rem);        /* 60 px: título del carrusel de inicio */
+  --text-hero--line-height: 1.08;
+  --text-hero-lead: clamp(1.0625rem, 1.45vw, 1.75rem); /* 22 px: subtítulo del carrusel de inicio */
+  --text-hero-lead--line-height: 1.4;
   --text-section: clamp(1.875rem, 3.5vw, 4rem);    /* 54 px: títulos de sección */
   --text-section--line-height: 1.2;
   --text-lead: clamp(1.125rem, 1.8vw, 2rem);       /* 27 px: subtítulo del hero */
@@ -126,7 +140,7 @@
     padding-inline: clamp(1.5rem, 3.1vw, 3.5rem);
     border-radius: 9999px;
     font-size: var(--text-nav);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
     text-align: center;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
