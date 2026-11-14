@@ -14,17 +14,17 @@ export const LEGAL = {
   /** Nombre comercial */
   brand: "Rozher Servicios Financieros",
   /** Razón social completa, tal como aparece en el acta constitutiva / RFC */
-  legalName: PENDING_INFO,
+  legalName: "Rozher Agente de Seguros y de Fianzas",
   /** Domicilio completo del responsable (calle, número, colonia, C.P., ciudad, estado) */
-  address: PENDING_INFO,
+  address: "Lauro Villar, 1004, Alianza, 87410, H. Matamoros, Tamaulipas",
   /** Correo para ejercer derechos ARCO y asuntos de privacidad */
-  privacyEmail: PENDING_INFO,
+  privacyEmail: "jose.hernandez@rozherseguros.com",
   /** Registros, autorizaciones o inscripciones regulatorias que apliquen (si aplican) */
-  regulatoryRegistrations: PENDING_INFO,
+  regulatoryRegistrations: "",
   /** Unidad o canal de atención de quejas y aclaraciones de usuarios */
-  complaintsUnit: PENDING_INFO,
+  complaintsUnit: "jose.hernandez@rozherseguros.com",
   /** Ciudad cuyos tribunales serán competentes (para los términos y condiciones) */
-  jurisdictionCity: PENDING_INFO,
+  jurisdictionCity: "H. Matamoros, Tam.",
 
   /** Fechas de última actualización de los documentos */
   privacyUpdated: "noviembre de 2026",
