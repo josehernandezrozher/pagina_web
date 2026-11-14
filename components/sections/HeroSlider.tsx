@@ -4,15 +4,22 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Container } from "@/components/shared/Container";
+import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 
 type Tone = "light" | "dark";
 
 type Slide = {
   tab: string;
+  /** Texto pequeño en mayúsculas arriba del título (opcional). */
+  eyebrow?: string;
   title: string;
+  /** Final del título resaltado en azul (opcional); se muestra en una línea aparte. */
+  titleAccent?: string;
   text: string;
   ctaLabel: string;
   ctaHref: string;
+  /** Mensaje prellenado del botón de WhatsApp (mismo número que el resto del sitio). */
+  whatsappMessage: string;
   image: string;
   /**
    * light = banner claro con la persona a la izquierda y el espacio libre a la derecha:
@@ -48,10 +55,13 @@ type Slide = {
 const ALL_SLIDES: Slide[] = [
   {
     tab: "Crédito IMSS",
-    title: "Tu pensión también puede ser tu respaldo",
+    eyebrow: "Rozher · Servicios Financieros",
+    title: "Tu pensión también puede ser tu",
+    titleAccent: "respaldo",
     text: "Crédito personal con cobranza delegada para pensionados y trabajadores IMSS. Te asesoramos en todo el trámite.",
     ctaLabel: "Conocer el crédito",
     ctaHref: "/productos/credito-nomina-imss",
+    whatsappMessage: "Hola, quiero información sobre el Crédito IMSS.",
     image: "/images/hero/banner-imss-asesora.jpg",
     tone: "light",
     textSide: "left",
@@ -63,6 +73,7 @@ const ALL_SLIDES: Slide[] = [
     text: "Tres tarjetas de crédito Aeroméxico Inbursa para acumular en cada compra y aprovechar beneficios de viaje.",
     ctaLabel: "Ver tarjetas",
     ctaHref: "/productos/tarjetas-aeromexico-inbursa",
+    whatsappMessage: "Hola, quiero información sobre las tarjetas Aeroméxico Inbursa.",
     image: "/images/placeholder-wide.jpg",
     tone: "dark",
     slug: "tarjetas-aeromexico-inbursa",
@@ -73,6 +84,7 @@ const ALL_SLIDES: Slide[] = [
     text: "Seguros de vida, gastos médicos mayores y auto, con la asesoría de un experto para elegir la cobertura correcta.",
     ctaLabel: "Ver seguros",
     ctaHref: "/seguros",
+    whatsappMessage: "Hola, quiero información sobre los seguros.",
     image: "/images/products/seguros.jpg",
     tone: "dark",
     category: "seguro",
@@ -222,13 +234,7 @@ function LightSlide({ slide }: { slide: Slide }) {
               textLeft ? "md:ml-[4vw] md:max-w-[38vw]" : "md:ml-[36.4vw] md:max-w-[50vw]"
             }`}
           >
-            <h1 className="text-display font-bold">{slide.title}</h1>
-            <p className="mt-[clamp(1rem,2.3vw,2.5rem)] text-lead font-semibold">{slide.text}</p>
-            <div className="mt-[clamp(1.5rem,2.7vw,3rem)]">
-              <Link href={slide.ctaHref} className="btn btn-primary">
-                {slide.ctaLabel}
-              </Link>
-            </div>
+            <SlideContent slide={slide} light />
           </div>
         </Container>
       </div>
@@ -257,15 +263,43 @@ function DarkSlide({ slide }: { slide: Slide }) {
       <div className="relative pt-[calc(var(--nav-h)+max(1.75rem,1.6vw))] pb-[clamp(3rem,6vw,7rem)] md:flex md:flex-1 md:items-center md:pt-[var(--nav-h)]">
         <Container className="w-full">
           <div className="max-w-[52rem] text-white md:ml-[7.9vw] md:max-w-[52vw]">
-            <h1 className="text-display font-bold">{slide.title}</h1>
-            <p className="mt-[clamp(1rem,2.3vw,2.5rem)] text-lead font-semibold">{slide.text}</p>
-            <div className="mt-[clamp(1.5rem,2.7vw,3rem)]">
-              <Link href={slide.ctaHref} className="btn btn-primary">
-                {slide.ctaLabel}
-              </Link>
-            </div>
+            <SlideContent slide={slide} light={false} />
           </div>
         </Container>
+      </div>
+    </>
+  );
+}
+
+/** Texto y botones del slide: antetítulo, título (con final resaltado), subtítulo, botón principal y WhatsApp. */
+function SlideContent({ slide, light }: { slide: Slide; light: boolean }) {
+  return (
+    <>
+      {slide.eyebrow && (
+        <p className="mb-[clamp(0.75rem,1.3vw,1.5rem)] text-[clamp(0.8125rem,0.95vw,1.125rem)] font-bold uppercase tracking-[0.2em]">
+          {slide.eyebrow}
+        </p>
+      )}
+      <h1 className="text-hero font-extrabold tracking-[-0.025em]">
+        {slide.title}
+        {slide.titleAccent && (
+          <>
+            {" "}
+            <span className={`block ${light ? "text-[var(--color-accent)]" : "text-[#7fb2ff]"}`}>
+              {slide.titleAccent}
+            </span>
+          </>
+        )}
+      </h1>
+      <p className="mt-[clamp(1rem,1.6vw,1.75rem)] text-hero-lead font-medium">{slide.text}</p>
+      <div className="mt-[clamp(1.5rem,2.4vw,2.75rem)] flex flex-wrap gap-[clamp(0.75rem,1.2vw,1.25rem)]">
+        <Link href={slide.ctaHref} className="btn btn-primary">
+          {slide.ctaLabel}
+          <ArrowRight size={22} aria-hidden="true" />
+        </Link>
+        <WhatsAppButton message={slide.whatsappMessage} variant={light ? "outline" : "outline-light"}>
+          WhatsApp
+        </WhatsAppButton>
       </div>
     </>
   );
