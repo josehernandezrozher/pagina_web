@@ -44,7 +44,7 @@ export function Footer() {
 
             <WhatsAppButton
               variant="primary"
-              message="Hola, quiero información sobre los productos de Rozher Seguros."
+              message="Hola, quiero información sobre los productos de Servicios Financieros."
             >
               Escribir por WhatsApp
             </WhatsAppButton>
@@ -56,9 +56,9 @@ export function Footer() {
         <Container className="pt-[clamp(2.5rem,4.5vw,5.5rem)] pb-8">
           <div className="grid grid-cols-1 gap-10 border-b border-white/10 pb-[clamp(2rem,3.5vw,4rem)] md:grid-cols-[1.4fr_1fr_1fr]">
             <div>
-              <p className="text-[clamp(1.25rem,1.9vw,2rem)] font-bold text-white">Rozher Seguros</p>
+              <p className="text-[clamp(1.25rem,1.9vw,2rem)] font-bold text-white">Rozher Servicios Financieros</p>
               <p className="mt-3 max-w-sm text-[clamp(0.9375rem,1.05vw,1.125rem)] text-white/70">
-                Asesoría en productos financieros y de seguros. Rozher Seguros es intermediario/asesor
+                Asesoría en productos financieros y de seguros. Rozher Servicios Financieros es intermediario/asesor
                 comercial; las condiciones de cada producto corresponden a la institución otorgante
                 correspondiente.
               </p>
@@ -85,7 +85,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col items-start justify-between gap-3 pt-6 text-sm text-white/60 sm:flex-row sm:items-center">
-            <p>© {year} Rozher Seguros. Todos los derechos reservados.</p>
+            <p>© {year} Rozher Servicios Financieros. Todos los derechos reservados.</p>
             <Link href="/datos-legales" className="hover:text-white">
               Datos legales y regulatorios
             </Link>
