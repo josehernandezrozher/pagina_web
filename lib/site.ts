@@ -14,7 +14,7 @@ function resolveSiteUrl(): string {
 }
 
 export const SITE_URL = resolveSiteUrl();
-export const SITE_NAME = "Rozher Seguros";
+export const SITE_NAME = "Rozher Servicios Financieros";
 export const SITE_DESCRIPTION =
   "Rozher Seguros te asesora en productos de crédito y seguros, con acompañamiento de un asesor en cada paso.";
 
