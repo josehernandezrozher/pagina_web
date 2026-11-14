@@ -88,34 +88,30 @@ export function Navbar() {
         style={{ height: "var(--nav-h)" }}
       >
         <Container className="flex h-full items-center">
-          <Link href="/" className="flex items-center gap-3" aria-label="Rozher Servicios Financieros, inicio">
-            <span
-              className={`grid shrink-0 place-items-center rounded-[0.6rem] font-bold ${
-                onLight ? "bg-[var(--color-primary)] text-white" : "bg-white text-[var(--color-primary)]"
-              }`}
-              style={{
-                height: "clamp(2.5rem, 3.3vw, 3.75rem)",
-                width: "clamp(2.5rem, 3.3vw, 3.75rem)",
-                fontSize: "clamp(1.2rem, 1.8vw, 2rem)",
-              }}
-            >
-              R
-            </span>
-            {/* Nombre en dos líneas: "Rozher" grande y "Servicios Financieros" debajo */}
-            <span className={`flex flex-col leading-none ${fg}`}>
-              <span
-                className="font-extrabold tracking-[-0.02em]"
-                style={{ fontSize: "clamp(1.3rem, 1.9vw, 2.125rem)" }}
-              >
-                Rozher
-              </span>
-              <span
-                className="mt-[0.3em] font-semibold"
-                style={{ fontSize: "clamp(0.75rem, 0.95vw, 1.0625rem)" }}
-              >
-                Servicios Financieros
-              </span>
-            </span>
+          <Link href="/" className="flex shrink-0 items-center" aria-label="Rozher Servicios Financieros, inicio">
+            {/*
+              Logo en dos versiones con fondo transparente: azul marino sobre fondo claro y
+              blanco sobre la barra azul. Se cargan las dos y solo se muestra la que toca,
+              para que el cambio al hacer scroll sea instantáneo.
+            */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo-rozher.png"
+              alt=""
+              width={725}
+              height={240}
+              className={`w-auto ${onLight ? "block" : "hidden"}`}
+              style={{ height: "clamp(2.75rem, 4.2vw, 4.75rem)" }}
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo-rozher-blanco.png"
+              alt=""
+              width={725}
+              height={240}
+              className={`w-auto ${onLight ? "hidden" : "block"}`}
+              style={{ height: "clamp(2.75rem, 4.2vw, 4.75rem)" }}
+            />
           </Link>
 
           <nav className="ml-[5.8vw] hidden items-center gap-[2.8vw] md:flex">
