@@ -88,7 +88,7 @@ export function Navbar() {
         style={{ height: "var(--nav-h)" }}
       >
         <Container className="flex h-full items-center">
-          <Link href="/" className="flex items-center gap-3" aria-label="Rozher Seguros, inicio">
+          <Link href="/" className="flex items-center gap-3" aria-label="Rozher Servicios Financieros, inicio">
             <span
               className={`grid shrink-0 place-items-center rounded-[0.6rem] font-bold ${
                 onLight ? "bg-[var(--color-primary)] text-white" : "bg-white text-[var(--color-primary)]"
