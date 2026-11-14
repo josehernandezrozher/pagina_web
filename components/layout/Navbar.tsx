@@ -94,18 +94,27 @@ export function Navbar() {
                 onLight ? "bg-[var(--color-primary)] text-white" : "bg-white text-[var(--color-primary)]"
               }`}
               style={{
-                height: "clamp(2.25rem, 2.9vw, 3.25rem)",
-                width: "clamp(2.25rem, 2.9vw, 3.25rem)",
-                fontSize: "clamp(1.1rem, 1.6vw, 1.75rem)",
+                height: "clamp(2.5rem, 3.3vw, 3.75rem)",
+                width: "clamp(2.5rem, 3.3vw, 3.75rem)",
+                fontSize: "clamp(1.2rem, 1.8vw, 2rem)",
               }}
             >
               R
             </span>
-            <span
-              className={`font-bold leading-none ${fg}`}
-              style={{ fontSize: "clamp(1.25rem, 1.9vw, 2rem)" }}
-            >
-              Rozher <span className="font-normal">Servicios Financieros</span>
+            {/* Nombre en dos líneas: "Rozher" grande y "Servicios Financieros" debajo */}
+            <span className={`flex flex-col leading-none ${fg}`}>
+              <span
+                className="font-extrabold tracking-[-0.02em]"
+                style={{ fontSize: "clamp(1.3rem, 1.9vw, 2.125rem)" }}
+              >
+                Rozher
+              </span>
+              <span
+                className="mt-[0.3em] font-semibold"
+                style={{ fontSize: "clamp(0.75rem, 0.95vw, 1.0625rem)" }}
+              >
+                Servicios Financieros
+              </span>
             </span>
           </Link>
 
