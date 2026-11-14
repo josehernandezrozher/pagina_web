@@ -19,7 +19,7 @@ const NAV_LINKS = [
   { href: "/contacto", label: "Contacto" },
 ];
 
-const WA_TOPBAR_MESSAGE = "Hola, quiero información sobre los productos de Rozher Seguros.";
+const WA_TOPBAR_MESSAGE = "Hola, quiero información sobre los productos de Rozher Servicios Financieros.";
 
 /**
  * Encabezado: barra superior + barra de navegación fija.
@@ -105,7 +105,7 @@ export function Navbar() {
               className={`font-bold leading-none ${fg}`}
               style={{ fontSize: "clamp(1.25rem, 1.9vw, 2rem)" }}
             >
-              Rozher <span className="font-normal">Seguros</span>
+              Rozher <span className="font-normal">Servicios Financieros</span>
             </span>
           </Link>
 
