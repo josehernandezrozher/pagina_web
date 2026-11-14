@@ -95,6 +95,13 @@
   html {
     scroll-behavior: smooth;
   }
+    /* Escala general del sitio en computadora: equivale a ver el navegador al 80 % de zoom. */
+  @media (min-width: 48rem) {
+    html {
+      font-size: 80%;
+    }
+  }
+  
   body {
     background: var(--color-paper);
     color: var(--color-ink);
